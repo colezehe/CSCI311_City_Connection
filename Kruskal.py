@@ -1,0 +1,54 @@
+"""
+KRUSKAL'S ALGORITHM
+Project: CSCI 311 City Connection
+Description: Represents Kruskal's algorithm for finding Minimum Spanning Tree.
+Resources: geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
+
+Input - g = Graph
+Output - Resulting MST
+"""
+
+def Kruskal(g):
+    # The output MST
+    mst = []
+        
+    # Variables used for sorting
+    i = 0
+    e = 0
+
+    # Sort all the edges in non-decreasing order
+    g.graph = sorted(g.graph, key=lambda item: item[2])
+
+    parent = []
+    rank = []
+
+    # Create V subsets with single elements
+    for node in range(g.V):
+        parent.append(node)
+        rank.append(0)
+
+    # Number of edges to be taken is equal to V-1
+    while e < g.V - 1:
+
+        # Smallest edge, then increment for next step
+        u, v, w = g.graph[i]
+        i = i + 1
+        x = g.find(parent, u)
+        y = g.find(parent, v)
+
+        # If there won't be a cycle, include it
+        if x != y:
+            e = e + 1
+            mst.append([u, v, w])
+            g.union(parent, rank, x, y)
+        # Else discard the edge
+        else:
+            pass
+
+    # Final resulting MST
+    minimumCost = 0
+    print ("Edges in the constructed MST")
+    for u, v, weight in mst:
+        minimumCost += weight
+        print("%d -- %d == %d" % (u, v, weight))
+    print("Minimum Spanning Tree" , minimumCost)
