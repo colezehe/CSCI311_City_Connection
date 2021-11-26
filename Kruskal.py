@@ -23,12 +23,12 @@ def Kruskal(g):
     rank = []
 
     # Create V subsets with single elements
-    for node in range(g.V):
+    for node in range(g.numVertices):
         parent.append(node)
         rank.append(0)
 
     # Number of edges to be taken is equal to V-1
-    while e < g.V - 1:
+    while e < g.numVertices - 1:
 
         # Smallest edge, then increment for next step
         u, v, w = g.graph[i]

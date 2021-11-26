@@ -8,11 +8,11 @@ class Graph:
     # Initializes a new graph
     def __init__(self, numV):
         self.graph = []
-        self.numVertices = numV
+        self.numVertices = int(numV)
  
     # Adds an edge to the graph
     def addEdge(self, u, v, w):
-        self.graph.append([u, v, w])
+        self.graph.append([int(u), int(v), float(w)])
  
     # Finds element i
     def find(self, parent, i):
