@@ -6,8 +6,9 @@ Description: Data Structure to represent a graph
 
 class Graph:
     # Initializes a new graph
-    def __init__(self):
+    def __init__(self, numV):
         self.graph = []
+        self.numVertices = numV
  
     # Adds an edge to the graph
     def addEdge(self, u, v, w):
@@ -19,8 +20,7 @@ class Graph:
             return i
         return self.find(parent, parent[i])
  
-    # A function that does union of two sets of x and y
-    # (uses union by rank)
+    # A function unions two sets
     def union(self, parent, rank, x, y):
         xroot = self.find(parent, x)
         yroot = self.find(parent, y)
