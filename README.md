@@ -3,6 +3,9 @@ For the CSCI 311 (Design &amp; Analysis of Algorithms) City Connection Graph Pro
 
 Authors: Cole Zehe, Jake Etzler, Tung Tran, Kyle Light
 
+### GitHub Repository
+https://github.com/colezehe/CSCI311_City_Connection
+
 ### How to Run Our Code
 1) Execute Python file ExecuteThis.py
 
