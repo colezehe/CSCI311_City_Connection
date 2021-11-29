@@ -11,7 +11,6 @@ Output - Resulting MST
 def Kruskal(g):
     # The output MST
     mst = []
-        
     # Variables used for sorting
     i = 0
     e = 0
@@ -45,10 +44,5 @@ def Kruskal(g):
         else:
             pass
 
-    # Final resulting MST
-    minimumCost = 0
-    print ("Edges in the constructed MST")
-    for u, v, weight in mst:
-        minimumCost += weight
-        print("%d -- %d == %d" % (u, v, weight))
-    print("Minimum Spanning Tree" , minimumCost)
+    return mst
+   
