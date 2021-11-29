@@ -16,9 +16,10 @@ def ReadGraph(f):
     # Split into list of edge data lines
     data = data.split("\n")
 
-    # Find total number of vertices
+    # Find total number of vertices (not sure if correct)
     lastEdge = data[len(data)-2].split(" ")
-    numVertices = lastEdge[2]
+    numVertices = lastEdge[0]
+
     # Graph initialized
     g = Graph(numVertices)
 
