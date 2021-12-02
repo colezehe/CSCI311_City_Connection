@@ -6,6 +6,7 @@ Main program For testing our algorithms
 from OutputGraph import *
 from Graph import *
 from Kruskal import *
+from Prim import prim
 import sys
 import os.path
 
@@ -14,25 +15,31 @@ inputFile = "SanJoaquin.txt"
 outputFile = "output.txt"
 
 # Handle standard interface's input
-if len(sys.argv) >= 3:
+if len(sys.argv) >= 2:
     # Check if input file exists
     if os.path.isfile(sys.argv[1]):
         inputFile = sys.argv[1]
     else:
         print(f"Given input file does not exist! Using default: {inputFile}")
+if len(sys.argv) >= 3:
     # Assign output file name
     outputFile = sys.argv[2]
+name, extension = outputFile.split(".")
+outputFileKruskal = ".".join([name+"Kruskal", extension])
+outputFilePrim = ".".join([name+"Prim", extension])
+    
 
-# Read in graph from data file
+# Using Kruskal
 g = Graph(inputFile)
-
-# Get MST from Kruskal's Algorithm
 g = Kruskal(g)
+OutputGraph(outputFileKruskal, g)
+print(f"Successfully ran Kruskal and wrote output to {outputFileKruskal}")
 
-# Output Final Graph
-OutputGraph(outputFile, g)
-print(f"Successfully wrote graph to {outputFile}")
-
+# Using prim's
+g = Graph(inputFile)
+g = prim(g)
+OutputGraph(outputFilePrim, g)
+print(f"Successfully ran Kruskal and wrote output to {outputFilePrim}")
 
 # DEFUNCT CODE BELOW
 

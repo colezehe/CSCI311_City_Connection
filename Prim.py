@@ -4,11 +4,15 @@
 Created on Tue Nov 30 15:35:51 2021
 
 @author: krl010
+Reviewed by tst008
 """
 
 # A Python program for Prims's MST for
 # adjacency list representation of graph
 # code modified from https://cppsecrets.com/users/1032115979910410511011497115116111103105505149484957575564103109971051084699111109/Python-Implementation-of-Prims-Minimum-Spanning-Tree.php
+
+from Graph import Graph
+
 
 def createAdjMatrix(V, G):
     
@@ -26,7 +30,7 @@ def createAdjMatrix(V, G):
         adjMatrix[G.graph[i][1]][G.graph[i][0]] = G.graph[i][2]
     return adjMatrix
 
-def prims(G):
+def prim(G):
     
     V = G.numVertices
   # create adj matrix from graph
@@ -34,13 +38,14 @@ def prims(G):
     #arbitrarily choose initial vertex from graph
     vertex = 0
     #initialize empty edges array and empty MST
-    MST = []
+    MST = Graph()
     edges = []
     visited = []
     minEdge = [None,None,float('inf')]
     #run prims algorithm until we create an MST
     #that contains every vertex from the graph
-    while len(MST) != V-1:
+    while len(MST.graph) != V-1:
+        print(".", end="")
         #mark this vertex as visited
         visited.append(vertex)
         #add each edge to list of potential edges
@@ -55,7 +60,7 @@ def prims(G):
      #remove min weight edge from list of edges
         edges.remove(minEdge)
         #push min edge to MST
-        MST.append(minEdge)
+        MST.addEdge(*minEdge)
         #start at new vertex and reset min edge
         vertex = minEdge[1]
         minEdge = [None,None,float('inf')]

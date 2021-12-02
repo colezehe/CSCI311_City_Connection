@@ -10,6 +10,7 @@ Output - Resulting MST
 
 from Graph import Graph
 
+
 def Kruskal(g):
     # The output MST
     mst = Graph()
