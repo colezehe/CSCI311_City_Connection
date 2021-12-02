@@ -7,7 +7,11 @@ Authors: Cole Zehe, Jake Etzler, Tung Tran, Kyle Light
 https://github.com/colezehe/CSCI311_City_Connection
 
 ### How to Run Our Code
-1) Execute Python file ExecuteThis.py
+In a command prompt, at directory "CSCI311_City_Connection":
+> py ExecuteThis.py inputFile outputFile
+
+For Example:
+> py ExecuteThis.py NorthAmerica.txt output.txt
 
 ### How to Understand Our Programs
 
@@ -17,11 +21,17 @@ _ExecuteThis.py_
 
 _Graph.py_
   - Data Structure for storing a graph
+  - init function takes an input file name
+  - input file line format: Edge ID, Start Node ID, End Node ID, Length
 
 _Kruskal.py_
   - Contains a version of Kruskal's algorithm
   - Outputs an MST of the input graph
 
-_ReadGraph.py_
-  - Reads in a graph from the standard text file input
-  - input file line format: Edge ID, Start Node ID, End Node ID, Length
+_Prim.py_
+  - Contains a version of Prim's algorithm
+  - Outputs an MST of the input graph
+
+_OutputGraph.py_
+  - Outputs a graph based upon an input graph
+  - Format for each line: Edge ID, Start Node ID, End Node ID, Length
