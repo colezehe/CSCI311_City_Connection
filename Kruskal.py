@@ -8,9 +8,11 @@ Input - g = Graph
 Output - Resulting MST
 """
 
+from Graph import Graph
+
 def Kruskal(g):
     # The output MST
-    mst = []
+    mst = Graph()
     # Variables used for sorting
     i = 0
     e = 0
@@ -32,13 +34,18 @@ def Kruskal(g):
         # Smallest edge, then increment for next step
         u, v, w = g.graph[i]
         i = i + 1
-        x = g.find(parent, u)
-        y = g.find(parent, v)
+
+        try:
+            x = g.find(parent, u)
+            y = g.find(parent, v)
+        except:        
+            print(f"parent length: {g.numVertices}, edge:({u},{v})")
+            raise
 
         # If there won't be a cycle, include it
         if x != y:
             e = e + 1
-            mst.append([u, v, w])
+            mst.addEdge(u, v, w)
             g.union(parent, rank, x, y)
         # Else discard the edge
         else:
