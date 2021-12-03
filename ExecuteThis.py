@@ -39,7 +39,7 @@ print(f"Successfully ran Kruskal and wrote output to {outputFileKruskal}")
 g = Graph(inputFile)
 g = prim(g)
 OutputGraph(outputFilePrim, g)
-print(f"Successfully ran Kruskal and wrote output to {outputFilePrim}")
+print(f"Successfully ran Prims and wrote output to {outputFilePrim}")
 
 # DEFUNCT CODE BELOW
 

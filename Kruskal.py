@@ -20,6 +20,7 @@ def Kruskal(g):
 
     # Sort all the edges in non-decreasing order
     g.graph = sorted(g.graph, key=lambda item: item[2])
+    totalWeight = 0
 
     parent = []
     rank = []
@@ -47,10 +48,11 @@ def Kruskal(g):
         if x != y:
             e = e + 1
             mst.addEdge(u, v, w)
+            totalWeight += w
             g.union(parent, rank, x, y)
         # Else discard the edge
         else:
             pass
-
+    print("Total weight:", totalWeight)
     return mst
    

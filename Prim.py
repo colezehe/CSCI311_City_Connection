@@ -12,6 +12,7 @@ Reviewed by tst008
 # code modified from https://cppsecrets.com/users/1032115979910410511011497115116111103105505149484957575564103109971051084699111109/Python-Implementation-of-Prims-Minimum-Spanning-Tree.php
 
 from Graph import Graph
+from PriorityQueue import PQDummy
 
 
 def createAdjMatrix(V, G):
@@ -45,6 +46,8 @@ def prim(G):
     #run prims algorithm until we create an MST
     #that contains every vertex from the graph
     while len(MST.graph) != V-1:
+        if (len(MST.graph) % 100 == 0):
+            print(f'{len(MST.graph)}/{V}')
         print(".", end="")
         #mark this vertex as visited
         visited.append(vertex)
@@ -64,4 +67,60 @@ def prim(G):
         #start at new vertex and reset min edge
         vertex = minEdge[1]
         minEdge = [None,None,float('inf')]
+    return MST
+
+def prim(G):
+    
+    V = G.numVertices
+    #arbitrarily choose initial vertex from graph
+    vertex = 0
+    #initialize empty edges array and empty MST
+    MST = Graph()
+    pq = PQDummy(lambda x,y: x[2] < y[2]) # Compare distance
+    visited = [False for x in range(V)]
+    for i in range(len(G.graph)):
+        if G.graph[i][0] == 0:
+            pq.push(G.graph[i]) 
+        else:
+            break
+    visited[0] = True
+    totalWeight = 0
+    #run prims algorithm until we create an MST
+    #that contains every vertex from the graph
+    while len(MST.graph) != V - 1:
+        if (len(MST.graph) % 100 == 0):
+            print(f'{len(MST.graph)}/{V}')
+        #get minimum edge
+#         print(pq)
+        edge = pq.pop() 
+        
+        #check if visited
+        if visited[edge[0]] and visited[edge[1]]:
+            continue
+        elif visited[edge[0]]:
+            vertex = edge[1]
+        elif visited[edge[1]]:
+            vertex = edge[0]
+        visited[vertex] = True
+        MST.addEdge(*edge)
+        totalWeight += edge[2]
+#         print(edge)
+#         print(visited)
+#         print(vertex)
+        
+        # Find edges going out from vertex
+        # Can reduce further from n to log n + num_edge_per_vertex
+        for i in range(len(G.graph)):
+            u, v, w = G.graph[i]
+            if u > vertex:
+                break
+            elif u != vertex and v != vertex:
+                continue
+            if v == vertex: # So u is always the vertex
+                u, v = v, u
+            if visited[v]:
+                continue
+            else:
+                pq.push(G.graph[i])
+    print(totalWeight)    
     return MST
